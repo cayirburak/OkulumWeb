@@ -5,7 +5,7 @@ import {Home} from "./components/Home.js"
 import {StudentAdd} from "./components/StudentAdd.js"
 import {Sidebar} from "./components/sidebar/Sidebar"
 import {StudentInfo} from "./components/studentInfo/StudentInfo"
-import {Route, BrowserRouter as Router} from 'react-router-dom'
+import {Redirect, Route, BrowserRouter as Router} from 'react-router-dom'
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
               <div className="container-fluid">
                   <Sidebar/>
                   <switch>
+                      <Redirect exact from="/" to="/appInfo" />
                       <Route path="/appInfo" component={Home}/>
                       <Route path="/studentInfo" component={StudentInfo}/>
                       <Route path="/studentAdd" component={StudentAdd}/>
