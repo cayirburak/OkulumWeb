@@ -34,8 +34,8 @@ export class StudentInfo extends Component {
     }
     render(){
         return(
-            <div className="row">
-                <Table striped bordered hover variant="dark">
+
+                <Table striped bordered hover>
                     <thead>
                     <tr>
                         <th>First Name</th>
@@ -48,7 +48,7 @@ export class StudentInfo extends Component {
                     {this.state.students.map(this.renderStudents)}
                     </tbody>
                 </Table>
-            </div>
+
         )
     }
 }
