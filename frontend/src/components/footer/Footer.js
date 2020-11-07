@@ -5,8 +5,7 @@ const Footer = () => {
     return(
         <div className="main-footer">
             <div className="container">
-                <div className="row">
-                    {/*col1*/}
+                {/*<div className="row">
                     <div className="col">
                         <h1>Okulum Web</h1>
                         <ul className="list-unstyled">
@@ -15,7 +14,6 @@ const Footer = () => {
                             <li>Yenimahalle</li>
                         </ul>
                         </div>
-                    {/*col2*/}
                     <div className="col">
                         <h1>Vizyon</h1>
                         <ul className="list-unstyled">
@@ -24,7 +22,6 @@ const Footer = () => {
                             <li>DOPLAR</li>
                         </ul>
                     </div>
-                    {/*col3*/}
                     <div className="col">
                         <h1>Misyon</h1>
                         <ul className="list-unstyled">
@@ -33,8 +30,7 @@ const Footer = () => {
                             <li>SELENIUM</li>
                         </ul>
                     </div>
-                </div>
-                <hr/>
+                </div>*/}
                 <div className="row">
                     <p className="col-sm">
                         &copy;{new Date().getFullYear()} OKULUM WEB | Tüm Hakları Saklıdır | Gizlilik

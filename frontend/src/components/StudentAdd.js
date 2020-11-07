@@ -18,7 +18,7 @@ export class StudentAdd extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        axios.post(`http://localhost:8080/StudentsAPIProject/students/post`, {
+        axios.post(`http://192.168.1.37:8080/StudentsAPIProject/students/post`, {
             name: this.state.name,
             surname: this.state.surname,
             trid: this.state.trid,

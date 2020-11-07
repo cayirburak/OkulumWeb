@@ -16,8 +16,8 @@ function App() {
 
 
               <Router>
-              <div className="container-fluid">
                   <Sidebar/>
+              <div className="container-fluid">
                   <switch>
                       <Redirect exact from="/" to="/appInfo" />
                       <Route path="/appInfo" component={Home}/>
