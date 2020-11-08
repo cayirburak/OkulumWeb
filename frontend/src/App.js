@@ -13,19 +13,17 @@ function App() {
 
           <div className="page-container">
               <div className="content-wrap">
-
-
-              <Router>
-                  <Sidebar/>
-              <div className="container-fluid">
-                  <switch>
-                      <Redirect exact from="/" to="/appInfo" />
-                      <Route path="/appInfo" component={Home}/>
-                      <Route path="/studentInfo" component={StudentInfo}/>
-                      <Route path="/studentAdd" component={StudentAdd}/>
-                  </switch>
-              </div>
-              </Router>
+                  <Router>
+                      <Sidebar/>
+                          <div className="container-fluid">
+                              <switch>
+                                  <Redirect exact from="/" to="/appInfo" />
+                                  <Route path="/appInfo" component={Home}/>
+                                  <Route path="/studentInfo" component={StudentInfo}/>
+                                  <Route path="/studentAdd" component={StudentAdd}/>
+                              </switch>
+                          </div>
+                  </Router>
               </div>
               <Footer/>
           </div>

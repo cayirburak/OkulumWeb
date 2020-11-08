@@ -48,6 +48,25 @@ public class StudentsApi {
         }
     }
 
+    @PutMapping("/Studentupdate/{id}")
+    public ResponseEntity<Students> updateTutorial(@PathVariable("id") String id, @RequestBody Students studentbody) {
+        ResponseEntity<Students> StudentsData = studentService.findByIdStudent(id);
+
+        if (StudentsData.hasBody()) {
+            Students student = StudentsData.getBody();
+            System.out.println(student.toString());
+            student.setName(studentbody.getName());
+            student.setSurname(studentbody.getSurname());
+            student.setTrid(studentbody.getTrid());
+            student.setStudentno(studentbody.getStudentno());
+            studentService.saveStudent(student);
+            System.out.println(student.toString());
+            return new ResponseEntity(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @DeleteMapping("/Studentdelete/{id}")
     public ResponseEntity<Students> deleteStudent(@PathVariable("id") String id) {
         ResponseEntity<Students> StudentsData = studentService.findByIdStudent(id);

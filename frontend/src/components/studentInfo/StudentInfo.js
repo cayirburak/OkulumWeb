@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {Button, Table} from "react-bootstrap";
+import {Button, Form, Table} from "react-bootstrap";
 import axios from "axios";
 import './StudentInfo.css';
 import {Link} from "react-router-dom";
@@ -7,10 +7,39 @@ import {Link} from "react-router-dom";
 export class StudentInfo extends Component {
 
     state = {
-        students: []
+        students: [],
+        editMode: false,
+        id : '',
+        name: '',
+        surname: '',
+        trid: '',
+        studentno: ''
+    }
+
+    handleChange(e) {
+        this.setState({ [e.target.name] : e.target.value });
+    }
+
+    handleSubmit = event => {
+        event.preventDefault();
+        const id = this.state.id
+        axios.put(`http://192.168.1.37:8080/StudentsAPIProject/students/Studentupdate/` + id , {
+            name: this.state.name,
+            surname: this.state.surname,
+            trid: this.state.trid,
+            studentno: this.state.studentno
+        })
+            .then(res => {
+                this.getStudents()
+                this.setState({editMode: false})
+            })
     }
 
     async componentDidMount() {
+        this.getStudents()
+    }
+
+    getStudents(){
         try{
             axios.get(`http://192.168.1.37:8080/StudentsAPIProject/students/all`)
                 .then(res => {
@@ -21,31 +50,43 @@ export class StudentInfo extends Component {
         catch (err){
             console.log("Error fetching data-----------", err);
         }
+    }
 
+    getStudentById(id){
+        if(this.state.editMode === false){
+            this.setState({
+                editMode : true
+            })
+        }
+        try{
+            axios.get(`http://192.168.1.37:8080/StudentsAPIProject/students/Students/`+ id)
+                .then(res => {
+                    console.log(res.data);
+                    this.setState({id:res.data.id})
+                    this.setState({name:res.data.name})
+                    this.setState({surname:res.data.surname})
+                    this.setState({trid:res.data.trid})
+                    this.setState({studentno:res.data.studentno})
+                })
+        }
+        catch (err){
+            console.log("Error fetching data-----------", err);
+        }
     }
 
     deleteStudent(id){
-        console.log("silme butonuna tıklandi : "+id)
 
         try{
             axios.delete(`http://192.168.1.37:8080/StudentsAPIProject/students/Studentdelete/`+ id)
                 .then(res => {
-                    try{
-                        axios.get(`http://192.168.1.37:8080/StudentsAPIProject/students/all`)
-                            .then(res => {
-                                console.log(res.data);
-                                this.setState({students: res.data});
-                            })
-                    }
-                    catch (err){
-                        console.log("Error fetching data-----------", err);
-                    }
+                    this.getStudents()
                 })
         }
         catch (err){
             console.log("Error delete operation-----------", err);
         }
     }
+
 
     renderStudents = (students, index) => {
         return(
@@ -55,7 +96,7 @@ export class StudentInfo extends Component {
                 <td>{students.trid}</td>
                 <td>{students.studentno}</td>
                 <td>
-                    <Button className="btn-table btn-primary">
+                    <Button onClick={this.getStudentById.bind(this, students.id)} className="btn-table btn-primary">
                         <i className="fa fa-edit"></i>
                     </Button>
                     <Button onClick={this.deleteStudent.bind(this, students.id)} className="btn-table btn-danger">
@@ -66,8 +107,27 @@ export class StudentInfo extends Component {
         )
     }
     render(){
+        let editMode = this.state.editMode;
         return(
             <div className="container-table">
+                { editMode ? <div className="col-12">
+                    <Form name="blog_post" className="form-horizontal col-4" onSubmit={this.handleSubmit}>
+                        <Form.Label>Adı</Form.Label>
+                        <Form.Control name="name" type={Text} placeholder={"Adını giriniz"} onChange={this.handleChange.bind(this)} value={this.state.name}/>
+
+                        <Form.Label>Soyadı</Form.Label>
+                        <Form.Control name="surname" type={Text} placeholder={"Soyadını giriniz"} onChange={this.handleChange.bind(this)} value={this.state.surname}/>
+
+                        <Form.Label>Tc No</Form.Label>
+                        <Form.Control name="trid" type={Text} placeholder={"Tc No giriniz"} onChange={this.handleChange.bind(this)} value={this.state.trid}/>
+
+                        <Form.Label>Öğrenci No</Form.Label>
+                        <Form.Control name="studentno" type={Text} placeholder={"Öğrenci No giriniz"} onChange={this.handleChange.bind(this)} value={this.state.studentno}/>
+
+                        <br/>
+                        <Button type={"submit"}>Öğrenci Güncelle</Button>
+                    </Form>
+                </div> : <div></div>}
                 <Table striped bordered hover>
                     <thead>
                     <tr>

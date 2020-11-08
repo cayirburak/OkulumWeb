@@ -60,4 +60,9 @@ public class Students {
     public void setStudentno(String studentno) {
         this.studentno = studentno;
     }
+
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", name=" + name + ", surname=" + surname + ", trid=" + trid + ", studentno=" + studentno + "]";
+    }
 }

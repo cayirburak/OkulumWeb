@@ -5,12 +5,11 @@
     margin-left: 20% !important;
 }
 
-.page-container{
-   display: flex;
-    flex-direction: column;
+.page-container {
+    position: relative;
     min-height: 100vh;
 }
 
-content-wrap{
-    flex: 1;
+.content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
 }
