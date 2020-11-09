@@ -9,7 +9,7 @@ export class Sidebar extends Component {
             <nav className="main-menu">
                 <ul>
                     <li>
-                        <Link to="/appInfo">
+                        <Link to="/">
                             <i className="fa fa-home fa-2x"></i>
                             <span className="nav-text">
                             OKULUM

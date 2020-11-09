@@ -6,7 +6,7 @@ import {StudentAdd} from "./components/StudentAdd.js"
 import {Sidebar} from "./components/sidebar/Sidebar"
 import Footer from "./components/footer/Footer"
 import {StudentInfo} from "./components/studentInfo/StudentInfo"
-import {Redirect, Route, BrowserRouter as Router} from 'react-router-dom'
+import {Route, BrowserRouter as Router} from 'react-router-dom'
 
 function App() {
   return (
@@ -17,8 +17,7 @@ function App() {
                       <Sidebar/>
                           <div className="container-fluid">
                               <switch>
-                                  <Redirect exact from="/" to="/appInfo" />
-                                  <Route path="/appInfo" component={Home}/>
+                                  <Route exact path="/" component={Home}/>
                                   <Route path="/studentInfo" component={StudentInfo}/>
                                   <Route path="/studentAdd" component={StudentAdd}/>
                               </switch>

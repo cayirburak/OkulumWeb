@@ -74,6 +74,12 @@ export class StudentInfo extends Component {
         }
     }
 
+    closeUpdateMode = () => {
+        this.setState({
+            editMode : false
+        })
+    }
+
     deleteStudent(id){
 
         try{
@@ -110,24 +116,30 @@ export class StudentInfo extends Component {
         let editMode = this.state.editMode;
         return(
             <div className="container-table">
-                { editMode ? <div className="col-12">
-                    <Form name="blog_post" className="form-horizontal col-4" onSubmit={this.handleSubmit}>
-                        <Form.Label>Adı</Form.Label>
-                        <Form.Control name="name" type={Text} placeholder={"Adını giriniz"} onChange={this.handleChange.bind(this)} value={this.state.name}/>
+                { editMode ? <div className="jumbotron">
 
-                        <Form.Label>Soyadı</Form.Label>
-                        <Form.Control name="surname" type={Text} placeholder={"Soyadını giriniz"} onChange={this.handleChange.bind(this)} value={this.state.surname}/>
+                    <div className="col-12">
+                        <Button onClick={this.closeUpdateMode} className="close-button btn-table btn-danger">
+                            <i className="fa fa-times"></i>
+                        </Button>
+                        <Form name="blog_post" className="form-horizontal col-4" onSubmit={this.handleSubmit}>
 
-                        <Form.Label>Tc No</Form.Label>
-                        <Form.Control name="trid" type={Text} placeholder={"Tc No giriniz"} onChange={this.handleChange.bind(this)} value={this.state.trid}/>
+                            <Form.Label>Adı</Form.Label>
+                            <Form.Control name="name" type={Text} placeholder={"Adını giriniz"} onChange={this.handleChange.bind(this)} value={this.state.name}/>
 
-                        <Form.Label>Öğrenci No</Form.Label>
-                        <Form.Control name="studentno" type={Text} placeholder={"Öğrenci No giriniz"} onChange={this.handleChange.bind(this)} value={this.state.studentno}/>
+                            <Form.Label>Soyadı</Form.Label>
+                            <Form.Control name="surname" type={Text} placeholder={"Soyadını giriniz"} onChange={this.handleChange.bind(this)} value={this.state.surname}/>
 
-                        <br/>
-                        <Button type={"submit"}>Öğrenci Güncelle</Button>
-                    </Form>
-                </div> : <div></div>}
+                            <Form.Label>Tc No</Form.Label>
+                            <Form.Control name="trid" type={Text} placeholder={"Tc No giriniz"} onChange={this.handleChange.bind(this)} value={this.state.trid}/>
+
+                            <Form.Label>Öğrenci No</Form.Label>
+                            <Form.Control name="studentno" type={Text} placeholder={"Öğrenci No giriniz"} onChange={this.handleChange.bind(this)} value={this.state.studentno}/>
+
+                            <br/>
+                            <Button type={"submit"}>Öğrenci Güncelle</Button>
+                        </Form>
+                    </div></div> : <div></div>}
                 <Table striped bordered hover>
                     <thead>
                     <tr>
